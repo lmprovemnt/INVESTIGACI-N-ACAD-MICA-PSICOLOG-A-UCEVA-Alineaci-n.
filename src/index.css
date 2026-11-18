@@ -1,0 +1,200 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-digital: #07080B;
+    --surface-digital: #11131A;
+    --border-digital: rgba(255, 255, 255, 0.12);
+    --text-digital: #F0ECE4;
+    --accent-alien: #00E5FF;
+    
+    --bg-material: #EAE3D9;
+    --surface-material: #DFD7CB;
+    --border-material: rgba(26, 24, 23, 0.15);
+    --text-material: #141312;
+    --accent-corporeal: #E24A2B;
+
+    --sidebar-width: 5rem;
+    --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+
+  body {
+    background-color: var(--bg-digital);
+    color: var(--text-digital);
+    font-family: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+  }
+
+  #root {
+    width: 100%;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    border: none;
+    display: block;
+    text-align: left;
+  }
+}
+
+/* Tipografía de Vanguardia (Outfit + Space Grotesk + Instrument Serif) */
+.font-display {
+  font-family: 'Outfit', sans-serif;
+}
+
+.font-editorial {
+  font-family: 'Instrument Serif', Georgia, serif;
+}
+
+.font-subheading {
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.font-body {
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+}
+
+.font-mono-system {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Subrayados Animados */
+.Underline {
+  position: relative;
+  text-decoration: none;
+}
+
+.Underline::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.25;
+}
+
+.Underline.--hover::before {
+  display: none;
+}
+
+.Underline.--hover::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 1.5px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right center;
+  transition: transform 0.6s var(--ease-out-expo);
+}
+
+.Underline.--hover:hover::after {
+  transform: scaleX(1);
+  transform-origin: left center;
+}
+
+/* Hover Underline Bar */
+.title-bar-wrap {
+  position: relative;
+  display: inline-block;
+}
+
+.title-bar-wrap::after {
+  content: "";
+  position: absolute;
+  bottom: 0.2rem;
+  left: 0;
+  width: 100%;
+  height: 0.4rem;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right center;
+  transition: transform 0.7s var(--ease-out-expo);
+}
+
+@media (min-width: 64rem) {
+  .title-bar-wrap::after {
+    height: 0.65rem;
+  }
+}
+
+.group:hover .title-bar-wrap::after {
+  transform: scaleX(1);
+  transform-origin: left center;
+}
+
+/* Custom Cursor con mix-blend-mode */
+.custom-cursor {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  mix-blend-mode: difference;
+  transition: width 0.3s var(--ease-out-expo), height 0.3s var(--ease-out-expo);
+}
+
+/* Scroll inercial Lenis */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* Paneles */
+.glass-panel {
+  background: rgba(17, 19, 26, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.plastic-border {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.plastic-border-r {
+  border-right: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.plastic-border-b {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+/* Scrollbar sutil */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: #07080B;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
