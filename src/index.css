@@ -22,6 +22,13 @@
     scroll-behavior: auto;
   }
 
+  .pb-safe {
+    padding-bottom: env(safe-area-inset-bottom, 0.75rem);
+  }
+  .pt-safe {
+    padding-top: env(safe-area-inset-top, 0.5rem);
+  }
+
   body {
     background-color: var(--bg-digital);
     color: var(--text-digital);

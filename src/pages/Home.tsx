@@ -62,16 +62,16 @@ export const Home: React.FC = () => {
       <div className="relative w-full min-h-screen bg-[#07080B] text-white">
         
         {/* HERO EDITORIAL HEADER MINIMALISTA */}
-        <section className="pt-20 sm:pt-28 px-6 sm:px-12 max-w-7xl mx-auto pb-12 flex flex-col md:flex-row md:items-end justify-between gap-8 border-b border-white/10">
-          <div className="space-y-4 max-w-3xl">
-            <span className="font-mono-system text-[11px] uppercase tracking-widest text-cyan-400">
+        <section className="pt-8 sm:pt-16 md:pt-24 lg:pt-28 px-4 sm:px-8 md:px-12 max-w-7xl mx-auto pb-10 sm:pb-12 flex flex-col md:flex-row md:items-end justify-between gap-6 sm:gap-8 border-b border-white/10">
+          <div className="space-y-3 sm:space-y-4 max-w-3xl">
+            <span className="font-mono-system text-[10px] sm:text-[11px] uppercase tracking-widest text-cyan-400">
               INVESTIGACIÓN ACADÉMICA // PSICOLOGÍA UCEVA
             </span>
-            <h1 className="font-display text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-black tracking-tight text-white leading-none">
+            <h1 className="font-display text-4xl sm:text-6xl md:text-8xl lg:text-9xl font-black tracking-tight text-white leading-tight sm:leading-none break-words">
               Alineación<span className="text-cyan-400">.</span>
             </h1>
 
-            <p className="font-editorial italic text-2xl sm:text-3xl text-stone-300 font-light max-w-2xl leading-relaxed">
+            <p className="font-editorial italic text-xl sm:text-2xl md:text-3xl text-stone-300 font-light max-w-2xl leading-relaxed">
               «{siteConfig.subtitle}»
             </p>
           </div>
@@ -123,11 +123,11 @@ export const Home: React.FC = () => {
 
                 {/* Título gigante central con hover underline grueso */}
                 <div className="relative z-10 text-center px-6 max-w-5xl space-y-3">
-                  <div className="font-mono-system text-xs sm:text-sm text-cyan-300 tracking-widest uppercase mb-2">
+                  <div className="font-mono-system text-[11px] sm:text-xs md:text-sm text-cyan-300 tracking-widest uppercase mb-2">
                     {proj.number} // {proj.subtitle}
                   </div>
 
-                  <h2 className="font-display text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-extrabold text-white tracking-tight leading-none">
+                  <h2 className="font-display text-4xl sm:text-6xl md:text-8xl lg:text-9xl font-extrabold text-white tracking-tight leading-tight sm:leading-none">
                     <span className="title-bar-wrap">
                       {proj.title}
                     </span>

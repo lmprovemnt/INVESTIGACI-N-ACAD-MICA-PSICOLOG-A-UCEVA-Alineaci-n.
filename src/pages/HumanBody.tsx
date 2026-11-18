@@ -49,20 +49,20 @@ export const HumanBody: React.FC = () => {
           <div className="absolute inset-0 bg-gradient-to-b from-[#07080B]/80 via-[#07080B]/70 to-transparent pointer-events-none" />
 
           <div className="relative z-10 max-w-4xl mx-auto space-y-6">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-mono-system tracking-widest uppercase bg-rose-500/10 text-rose-400 border border-rose-500/30">
-              <Activity className="w-3.5 h-3.5 text-rose-400" />
+            <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1 sm:py-1.5 rounded-full text-[10px] sm:text-xs font-mono-system tracking-widest uppercase bg-rose-500/10 text-rose-400 border border-rose-500/30">
+              <Activity className="w-3 sm:w-3.5 h-3 sm:h-3.5 text-rose-400" />
               <span>{humanBodyContent.header.badge}</span>
             </div>
 
-            <h1 className="font-display text-5xl sm:text-7xl md:text-8xl font-black tracking-tight leading-none text-white">
+            <h1 className="font-display text-4xl sm:text-6xl md:text-8xl font-black tracking-tight leading-tight sm:leading-none text-white break-words">
               {humanBodyContent.header.title}
             </h1>
 
-            <p className="font-editorial italic text-2xl sm:text-3xl text-stone-200 font-normal max-w-2xl mx-auto leading-relaxed">
+            <p className="font-editorial italic text-xl sm:text-2xl md:text-3xl text-stone-200 font-normal max-w-2xl mx-auto leading-relaxed">
               «{humanBodyContent.header.subtitle}»
             </p>
 
-            <p className="text-sm sm:text-base font-body text-stone-300 max-w-xl mx-auto leading-relaxed pt-2">
+            <p className="text-xs sm:text-sm md:text-base font-body text-stone-300 max-w-xl mx-auto leading-relaxed pt-1 sm:pt-2">
               {humanBodyContent.header.abstract}
             </p>
 

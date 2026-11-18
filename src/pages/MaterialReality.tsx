@@ -46,20 +46,20 @@ export const MaterialReality: React.FC = () => {
             style={{ opacity: opacityHeader }}
             className="relative z-10 max-w-4xl mx-auto text-center space-y-6"
           >
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-mono-system tracking-widest uppercase bg-cyan-400/10 text-cyan-300 border border-cyan-400/30">
-              <Layers className="w-3.5 h-3.5 text-cyan-400" />
+            <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1 sm:py-1.5 rounded-full text-[10px] sm:text-xs font-mono-system tracking-widest uppercase bg-cyan-400/10 text-cyan-300 border border-cyan-400/30">
+              <Layers className="w-3 sm:w-3.5 h-3 sm:h-3.5 text-cyan-400" />
               <span>{materialRealityContent.header.badge}</span>
             </div>
 
-            <h1 className="font-display text-5xl sm:text-7xl md:text-8xl font-black text-white tracking-tight leading-none">
+            <h1 className="font-display text-4xl sm:text-6xl md:text-8xl font-black text-white tracking-tight leading-tight sm:leading-none break-words">
               {materialRealityContent.header.title}
             </h1>
 
-            <p className="font-editorial italic text-2xl sm:text-3xl text-stone-200 font-normal max-w-2xl mx-auto leading-relaxed">
+            <p className="font-editorial italic text-xl sm:text-2xl md:text-3xl text-stone-200 font-normal max-w-2xl mx-auto leading-relaxed">
               «{materialRealityContent.header.subtitle}»
             </p>
 
-            <p className="text-sm sm:text-base font-body text-stone-300 max-w-xl mx-auto leading-relaxed pt-2">
+            <p className="text-xs sm:text-sm md:text-base font-body text-stone-300 max-w-xl mx-auto leading-relaxed pt-1 sm:pt-2">
               {materialRealityContent.header.abstract}
             </p>
 

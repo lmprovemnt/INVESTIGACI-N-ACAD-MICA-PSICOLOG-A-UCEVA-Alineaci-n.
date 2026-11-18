@@ -10,64 +10,133 @@ export const Sidebar: React.FC = () => {
   const { viewMode, setViewMode, setIsMenuOpen } = useViewMode();
   const [viewDropdownOpen, setViewDropdownOpen] = useState(false);
 
-  // Línea vertical que mide el progreso de lectura
+  // Línea vertical/horizontal que mide el progreso de lectura
   const { scrollYProgress } = useScroll();
-  const scaleY = useSpring(scrollYProgress, {
+  const scale = useSpring(scrollYProgress, {
     stiffness: 120,
     damping: 30,
     restDelta: 0.001,
   });
 
-
   const navLinks = [
     { path: '/', label: 'Portada', code: '00', icon: Compass },
     { path: '/realidad-material', label: 'Realidad Material', code: '01', icon: Layers },
     { path: '/cuerpo-humano', label: 'Cuerpo Humano', code: '02', icon: Activity },
-    { path: '/integrantes', label: 'Autoría & Studio', code: '03', icon: User },
+    { path: '/integrantes', label: 'Autoras', code: '03', icon: User },
   ];
 
   return (
     <>
-      {/* SIDEBAR FIJA A LA IZQUIERDA */}
+      {/* 1. BARRA SUPERIOR PARA DISPOSITIVOS MÓVILES (< md) */}
+      <header className="md:hidden fixed top-0 left-0 right-0 h-14 z-[990] bg-[#07080B]/90 backdrop-blur-xl border-b border-white/10 px-4 flex items-center justify-between select-none">
+        {/* Barra de progreso de lectura horizontal en móvil */}
+        <motion.div
+          className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-cyan-400 via-white to-rose-500 origin-left z-10"
+          style={{ scaleX: scale }}
+        />
+
+        <NavLink to="/" className="flex items-center gap-2 no-underline text-white">
+          <div className="w-7 h-7 rounded-lg bg-white/5 border border-white/20 flex items-center justify-center font-display font-black text-[11px] text-cyan-400">
+            ALN
+          </div>
+          <span className="font-mono-system text-[11px] text-stone-300 font-medium">UCEVA // PSICOLOGÍA</span>
+        </NavLink>
+
+        <div className="flex items-center gap-2">
+          {/* Selector rápido de vistas en móvil */}
+          <button
+            onClick={() => {
+              const modes: ('fullscreen' | 'grid' | 'list')[] = ['fullscreen', 'grid', 'list'];
+              const nextIndex = (modes.indexOf(viewMode) + 1) % modes.length;
+              setViewMode(modes[nextIndex]);
+            }}
+            className="px-2.5 py-1 rounded-lg bg-white/5 border border-white/15 text-[10px] font-mono-system uppercase text-cyan-300 flex items-center gap-1 cursor-pointer"
+            title="Alternar vista"
+          >
+            <span>{viewMode}</span>
+          </button>
+
+          {/* Botón de Menú móvil */}
+          <button
+            onClick={() => setIsMenuOpen(true)}
+            className="p-2 rounded-lg bg-white/5 border border-white/15 text-white cursor-pointer active:scale-95 transition-transform"
+            aria-label="Abrir Menú"
+          >
+            <MenuIcon className="w-4 h-4" />
+          </button>
+        </div>
+      </header>
+
+      {/* 2. BARRA DE NAVEGACIÓN INFERIOR PARA MÓVILES (< md) */}
+      <nav
+        aria-label="Navegación móvil inferior"
+        className="md:hidden fixed bottom-0 left-0 right-0 h-16 z-[990] bg-[#07080B]/95 backdrop-blur-2xl border-t border-white/10 px-2 flex items-center justify-around select-none pb-safe"
+      >
+        {navLinks.map((link) => {
+          const isActive = location.pathname === link.path;
+          const Icon = link.icon;
+
+          return (
+            <NavLink
+              key={link.path}
+              to={link.path}
+              className={`relative flex flex-col items-center justify-center py-1 px-3 rounded-xl transition-all ${
+                isActive ? 'text-cyan-400 font-semibold' : 'text-stone-400 hover:text-white'
+              }`}
+            >
+              {isActive && (
+                <motion.div
+                  layoutId="active-mobile-pill"
+                  className="absolute inset-0 rounded-xl bg-cyan-500/15 border border-cyan-400/30"
+                  transition={{ type: 'spring', stiffness: 350, damping: 28 }}
+                />
+              )}
+              <Icon className="w-4 h-4 mb-0.5 relative z-10" />
+              <span className="text-[10px] font-mono-system relative z-10">{link.label}</span>
+            </NavLink>
+          );
+        })}
+      </nav>
+
+      {/* 3. SIDEBAR FIJA A LA IZQUIERDA PARA PANTALLAS MEDIANAS Y GRANDES (>= md) */}
       <aside
         aria-label="Barra lateral de navegación"
-        className="fixed top-0 bottom-0 left-0 w-16 sm:w-20 md:w-24 z-[1000] bg-[#07080B]/90 backdrop-blur-2xl border-r border-white/10 flex flex-col justify-between items-center py-5 sm:py-7 select-none"
+        className="hidden md:flex fixed top-0 bottom-0 left-0 w-20 lg:w-24 z-[1000] bg-[#07080B]/90 backdrop-blur-2xl border-r border-white/10 flex-col justify-between items-center py-6 select-none"
       >
         {/* Línea vertical de progreso de lectura en el borde exterior derecho */}
         <motion.div
           className="absolute top-0 right-0 w-[2px] bg-gradient-to-b from-cyan-400 via-white to-rose-500 origin-top z-10"
-          style={{ height: '100%', scaleY }}
+          style={{ height: '100%', scaleY: scale }}
         />
 
-        {/* 1. TOP: LOGO TIPOGRÁFICO VERTICAL */}
+        {/* TOP: LOGO TIPOGRÁFICO VERTICAL */}
         <div className="flex flex-col items-center gap-3">
           <NavLink
             to="/"
             className="group flex flex-col items-center gap-1.5 no-underline"
             data-cursor="HOME"
           >
-            <div className="w-8 h-8 rounded-lg bg-white/5 border border-white/20 flex items-center justify-center text-white group-hover:border-cyan-400 transition-colors shadow-sm">
-              <span className="font-display font-black text-xs tracking-tighter">ALN</span>
+            <div className="w-9 h-9 rounded-xl bg-white/5 border border-white/20 flex items-center justify-center text-white group-hover:border-cyan-400 transition-colors shadow-sm">
+              <span className="font-display font-black text-xs tracking-tighter text-cyan-400">ALN</span>
             </div>
-            <span className="font-mono-system text-[9px] uppercase tracking-widest text-stone-400 group-hover:text-cyan-300 transition-colors hidden sm:block">
+            <span className="font-mono-system text-[9px] uppercase tracking-widest text-stone-400 group-hover:text-cyan-300 transition-colors">
               .SYS
             </span>
           </NavLink>
         </div>
 
-        {/* 2. CENTER: RUTAS Y EL SELECTOR DE LAS 3 BARRAS */}
+        {/* CENTER: RUTAS Y EL SELECTOR DE LAS 3 BARRAS */}
         <div className="flex flex-col items-center gap-6 my-auto">
-          
-          {/* BOTÓN DE LAS 3 BARRAS / 3 VISTAS (SOLICITADO ESPECÍFICAMENTE POR EL USUARIO) */}
+          {/* BOTÓN DE LAS 3 BARRAS / 3 VISTAS */}
           <div className="relative">
             <button
               onClick={() => setViewDropdownOpen(!viewDropdownOpen)}
-              className="group relative p-2.5 sm:p-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/15 text-white transition-all cursor-pointer flex flex-col items-center justify-center gap-1"
+              className="group relative p-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/15 text-white transition-all cursor-pointer flex flex-col items-center justify-center gap-1"
               data-cursor="VIEWS"
               title="Selector de vistas: Fullscreen | Grid | List"
             >
               {/* Icono de las 3 barras animadas */}
-              <div className="flex flex-col gap-1 w-4 sm:w-5">
+              <div className="flex flex-col gap-1 w-5">
                 <span
                   className={`h-[2px] rounded-full transition-all duration-300 ${
                     viewMode === 'fullscreen' ? 'w-full bg-cyan-400' : 'w-full bg-white/70'
@@ -85,7 +154,7 @@ export const Sidebar: React.FC = () => {
                 />
               </div>
 
-              <span className="text-[8px] font-mono-system uppercase tracking-widest text-stone-400 mt-1 hidden sm:block">
+              <span className="text-[8px] font-mono-system uppercase tracking-widest text-stone-400 mt-1">
                 3 Views
               </span>
             </button>
@@ -102,7 +171,6 @@ export const Sidebar: React.FC = () => {
                   <span>Perspectiva</span>
                   <span className="text-cyan-400 font-bold">Visual</span>
                 </div>
-
 
                 <button
                   onClick={() => {
@@ -164,7 +232,7 @@ export const Sidebar: React.FC = () => {
                 <div key={link.path} className="relative group/nav">
                   <NavLink
                     to={link.path}
-                    className={`relative p-2.5 sm:p-3 rounded-xl flex items-center justify-center transition-all duration-200 ${
+                    className={`relative p-3 rounded-xl flex items-center justify-center transition-all duration-200 ${
                       isActive
                         ? 'text-white bg-white/15 border border-white/25 shadow-lg'
                         : 'text-stone-400 hover:text-white hover:bg-white/5'
@@ -195,11 +263,11 @@ export const Sidebar: React.FC = () => {
           </nav>
         </div>
 
-        {/* 3. BOTTOM: BOTÓN MENU OVERLAY (PLASTICBIONIC) */}
+        {/* BOTTOM: BOTÓN MENU OVERLAY */}
         <div className="flex flex-col items-center gap-3">
           <button
             onClick={() => setIsMenuOpen(true)}
-            className="group p-2.5 sm:p-3 rounded-xl bg-white/5 hover:bg-white/15 border border-white/15 text-white transition-all cursor-pointer flex flex-col items-center gap-1"
+            className="group p-3 rounded-xl bg-white/5 hover:bg-white/15 border border-white/15 text-white transition-all cursor-pointer flex flex-col items-center gap-1"
             data-cursor="MENU"
             title="Abrir Menú Editorial Fullscreen"
           >

@@ -43,8 +43,8 @@ export function App() {
             <Sidebar />
             <FullscreenMenu />
 
-            {/* Contenedor desplazado a la derecha por la sidebar */}
-            <div className="w-full pl-16 sm:pl-20 md:pl-24 transition-all duration-300">
+            {/* Contenedor principal con paddings dinámicos para móvil y escritorio */}
+            <div className="w-full pt-14 pb-20 md:pt-0 md:pb-0 md:pl-20 lg:pl-24 transition-all duration-300 min-h-screen">
               <AnimatedRoutes />
             </div>
           </div>

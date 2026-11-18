@@ -60,7 +60,7 @@ export const BeforeAfterSlider: React.FC<BeforeAfterSliderProps> = ({ comparison
         onMouseDown={() => setIsDragging(true)}
         onMouseUp={() => setIsDragging(false)}
         onTouchMove={handleTouchMove}
-        className="relative h-[480px] sm:h-[540px] w-full rounded-2xl overflow-hidden select-none cursor-ew-resize border border-white/15 shadow-2xl bg-[#090A0F]"
+        className="relative h-[400px] sm:h-[480px] md:h-[540px] w-full rounded-2xl overflow-hidden select-none cursor-ew-resize border border-white/15 shadow-2xl bg-[#090A0F]"
       >
         {/* Capa B: Hiperrealidad Digital (Lado Derecho / Fondo base) */}
         <div className="absolute inset-0 w-full h-full">
@@ -73,22 +73,22 @@ export const BeforeAfterSlider: React.FC<BeforeAfterSliderProps> = ({ comparison
           <div className="absolute inset-0 bg-cyan-950/20" />
 
           {/* Tarjeta de información lado derecho (Digital) */}
-          <div className="absolute bottom-6 right-6 max-w-xs sm:max-w-sm text-right p-5 rounded-xl glass-panel border border-cyan-500/30 shadow-lg pointer-events-none">
-            <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-mono-system tracking-wider uppercase bg-cyan-500/20 text-cyan-300 border border-cyan-400/40 mb-2">
-              <Cpu className="w-3 h-3 text-cyan-400" />
+          <div className="absolute bottom-3 right-3 sm:bottom-6 sm:right-6 max-w-[240px] sm:max-w-xs md:max-w-sm text-right p-3 sm:p-5 rounded-xl glass-panel border border-cyan-500/30 shadow-lg pointer-events-none">
+            <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[9px] sm:text-[10px] font-mono-system tracking-wider uppercase bg-cyan-500/20 text-cyan-300 border border-cyan-400/40 mb-1 sm:mb-2">
+              <Cpu className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-cyan-400" />
               {comparison.digitalDimension.label}
             </span>
-            <h5 className="font-editorial text-xl text-white font-medium">
+            <h5 className="font-editorial text-base sm:text-xl text-white font-medium">
               {comparison.digitalDimension.title}
             </h5>
-            <p className="text-xs text-stone-300 font-body mt-1 leading-relaxed">
+            <p className="text-[11px] sm:text-xs text-stone-300 font-body mt-1 leading-relaxed hidden xs:block sm:block">
               {comparison.digitalDimension.description}
             </p>
-            <div className="mt-3 flex flex-wrap justify-end gap-1.5">
+            <div className="mt-2 sm:mt-3 flex flex-wrap justify-end gap-1 sm:gap-1.5">
               {comparison.digitalDimension.sensoryTraits.map((trait, i) => (
                 <span
                   key={i}
-                  className="text-[10px] font-mono-system px-2 py-0.5 rounded bg-cyan-950/60 text-cyan-200 border border-cyan-700/50"
+                  className="text-[9px] sm:text-[10px] font-mono-system px-1.5 sm:px-2 py-0.5 rounded bg-cyan-950/60 text-cyan-200 border border-cyan-700/50"
                 >
                   {trait}
                 </span>
@@ -115,22 +115,22 @@ export const BeforeAfterSlider: React.FC<BeforeAfterSliderProps> = ({ comparison
             <div className="absolute inset-0 bg-[#EAE3D9]/10" />
 
             {/* Tarjeta de información lado izquierdo (Físico) */}
-            <div className="absolute bottom-6 left-6 max-w-xs sm:max-w-sm text-left p-5 rounded-xl bg-[#1A1817]/85 backdrop-blur-md border border-orange-500/30 shadow-lg pointer-events-none">
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-mono-system tracking-wider uppercase bg-[#D95338]/20 text-orange-200 border border-orange-500/40 mb-2">
-                <Feather className="w-3 h-3 text-orange-400" />
+            <div className="absolute bottom-3 left-3 sm:bottom-6 sm:left-6 max-w-[240px] sm:max-w-xs md:max-w-sm text-left p-3 sm:p-5 rounded-xl bg-[#1A1817]/85 backdrop-blur-md border border-orange-500/30 shadow-lg pointer-events-none">
+              <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[9px] sm:text-[10px] font-mono-system tracking-wider uppercase bg-[#D95338]/20 text-orange-200 border border-orange-500/40 mb-1 sm:mb-2">
+                <Feather className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-orange-400" />
                 {comparison.physicalDimension.label}
               </span>
-              <h5 className="font-editorial text-xl text-[#EAE3D9] font-medium">
+              <h5 className="font-editorial text-base sm:text-xl text-[#EAE3D9] font-medium">
                 {comparison.physicalDimension.title}
               </h5>
-              <p className="text-xs text-stone-300 font-body mt-1 leading-relaxed">
+              <p className="text-[11px] sm:text-xs text-stone-300 font-body mt-1 leading-relaxed hidden xs:block sm:block">
                 {comparison.physicalDimension.description}
               </p>
-              <div className="mt-3 flex flex-wrap gap-1.5">
+              <div className="mt-2 sm:mt-3 flex flex-wrap gap-1 sm:gap-1.5">
                 {comparison.physicalDimension.sensoryTraits.map((trait, i) => (
                   <span
                     key={i}
-                    className="text-[10px] font-mono-system px-2 py-0.5 rounded bg-orange-950/60 text-orange-200 border border-orange-700/50"
+                    className="text-[9px] sm:text-[10px] font-mono-system px-1.5 sm:px-2 py-0.5 rounded bg-orange-950/60 text-orange-200 border border-orange-700/50"
                   >
                     {trait}
                   </span>
